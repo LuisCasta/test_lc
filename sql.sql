@@ -31,3 +31,14 @@ DELETE FROM c_contactos WHERE IdContacto = 1;
 DELETE FROM c_eventos WHERE IdEvento = 1;
 
 DELETE FROM k_citas WHERE IdCita = 1;
+
+/* Consultar todas las citas que se den en México. */
+
+SELECT * FROM k_citas WHERE LugarEvento = 'México'
+
+/*Consultar todas citas de personas llamadas Luis*/
+
+SELECT k_citas.idCita, c_contactos.NombreContacto
+FROM k_citas
+INNER JOIN c_contactos ON k_citas.IdContacto = c_contactos.IdContacto
+WHERE c_contactos.NombreContacto = 'Luis'
