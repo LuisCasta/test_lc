@@ -38,7 +38,7 @@ SELECT * FROM k_citas WHERE LugarEvento = 'México'
 
 /*Consultar todas citas de personas llamadas Luis*/
 
-SELECT k_citas.idCita, c_contactos.NombreContacto
+SELECT k_citas.idCita
 FROM k_citas
 INNER JOIN c_contactos ON k_citas.IdContacto = c_contactos.IdContacto
 WHERE c_contactos.NombreContacto = 'Luis'
