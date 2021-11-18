@@ -42,3 +42,24 @@ SELECT k_citas.idCita
 FROM k_citas
 INNER JOIN c_contactos ON k_citas.IdContacto = c_contactos.IdContacto
 WHERE c_contactos.NombreContacto = 'Luis'
+
+/*-Consultar todas las citas de ayer.*/
+SELECT k_citas.IdCita, c_eventos.FechaHoraEvento
+FROM k_citas
+INNER JOIN c_eventos ON k_citas.IdEvento=c_eventos.IdEvento
+WHERE c_eventos.FechaHoraEvento = DATEADD(day,-1,'17-11-2021'); /*En lugar de la fecha especifica (3 parámetro) podemos pasar también la fecha del día de hoy automatica con NOW() o utilizando GETDATE()*/
+
+/*-Consultar todas las citas que tengan alguna Nota.*/
+
+SELECT * FROM k_citas
+WHERE NotaCita IS NOT NULL;
+
+/*-Borrar las citas de mañana.*/
+DELETE FROM k_citas
+INNER JOIN c_eventos ON k_citas.IdEvento=c_eventos.IdEvento
+WHERE c_eventos.FechaHoraEvento = DATEADD(day,1,'17-11-2021'); /*En lugar de la fecha especifica (3 parámetro) podemos pasar también la fecha del día de hoy automatica con NOW() o utilizando GETDATE()*/
+
+/*-Cancelar todas las citas de "Rosario Robles".*/
+DELETE FROM k_citas
+INNER JOIN c_contactos ON k_citas.IdContacto=c_contactos.IdContacto
+WHERE c_contactos.NombreContacto="Rosario Robles"
